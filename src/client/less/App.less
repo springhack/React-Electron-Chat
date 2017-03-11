@@ -1,0 +1,82 @@
+@import './Var.less';
+
+html, *{
+    font-size: 16px;
+    transition: all .5s;
+    font-family: "苹方", "Microsoft YaHei", "Comic Sans MS", "幼圆", "黑体", sans-serif;
+}
+
+body, img, div, section {
+    border: 0px;
+    padding: 0px;
+    margin: 0px;
+}
+
+#app {
+    margin-top: calc(32 / 16rem);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    .App {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .Flex {
+            width: calc(300 / 16rem);
+            height: calc(300 / 16rem);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            input {
+                outline: none;
+                padding: calc(4 / 16rem);
+                border: none;
+                border-bottom: 1px @DarkA solid;
+                text-align: center;
+                &:focus, &:hover {
+                    border-bottom: 1px @PinkA solid;
+                }
+            }
+            button {
+                outline: none;
+                padding: calc(8 / 16rem);
+                border: none;
+                cursor: pointer;
+                border-radius: calc(2 / 16rem);
+                background: @WhiteB;
+                color: @GreenD;
+                box-shadow: 0 0 calc(4 / 16rem) @DarkA;
+                &:hover {
+                    color: @GreenB;
+                    box-shadow: calc(1 / 16rem) calc(1 / 16rem) calc(4 / 16rem) @DarkA;
+                }
+            }
+            .Link {
+                display: flex;
+                justify-content: flex-end;
+                a{
+                    color: @WhiteC;
+                    text-decoration: none;
+                    &:hover {
+                        color: @WhiteD;
+                    }
+                }
+                &.right {
+                    a::after {
+                        content: ' -> ';
+                    }
+                }
+                &.left {
+                    justify-content: flex-start;
+                    a::before {
+                        content: ' <- ';
+                    }
+                }
+            }
+        }
+    }
+}

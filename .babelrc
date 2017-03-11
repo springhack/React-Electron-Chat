@@ -1,0 +1,27 @@
+{
+  'env': {
+    'production': {
+      presets: [
+        ['env', {
+          modules: false
+        }],
+        'stage-0',
+        'react'
+      ],
+      plugins: [
+        'babel-plugin-transform-decorators-legacy'
+      ]
+    },
+    'development': {
+      presets: [
+        'env',
+        'stage-0',
+        'react'
+      ],
+      plugins: [
+        'babel-plugin-transform-decorators-legacy'
+      ]
+    }
+  }
+}
+    
