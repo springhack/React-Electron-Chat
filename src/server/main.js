@@ -1,6 +1,6 @@
 /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2017-03-13 14:35:54
+        Last modified: 2017-03-13 17:14:20
         Filename: src/server/main.js
         Description: Created by SpringHack using vim automatically.
 **/
@@ -12,18 +12,24 @@ let MainWindow = null;
 let createWindow = () => {
     MainWindow = new BrowserWindow({
         width : 400,
+        minWidth : 400,
         height : 400,
+        minHeight : 400,
         center : true,
         webPreferences : {
-//            devTools : false,
+            //devTools : false,
             webSecurity: false,
             allowRunningInsecureContent : true
         }
     });
     DEV?MainWindow.loadURL(`http://localhost:9090`):MainWindow.loadURL(`file://${__dirname}/../dist/index.html`);
-    MainWindow.on('closed', () => {MainWindow = null});
+    MainWindow.on('closed', () => {
+        MainWindow = null;
+        app.exit();
+    });
     ipcMain.on('chat', () => {
-        MainWindow.setSize(800, 500)
+        MainWindow.setSize(800, 500);
+        MainWindow.setMinimumSize(800, 500);
         MainWindow.center();
     });
     let menu = Menu.buildFromTemplate([
@@ -33,7 +39,7 @@ let createWindow = () => {
         {label : 'Select All', accelerator : 'CmdOrCtrl+A', click() { MainWindow.webContents.selectAll(); }}
     ]);
     MainWindow.webContents.on('context-menu', (event, params) => {
-        menu.popup(MainWindow)//MainWindow, {x : params.x, y : params.y});
+        menu.popup(MainWindow);
     });
 };
 

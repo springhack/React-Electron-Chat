@@ -14,18 +14,43 @@ var _http2 = _interopRequireDefault(_http);
 
 var _express_router = require('./express_router.js');
 
+var _tuling = require('./tuling123.js');
+
+var _tuling2 = _interopRequireDefault(_tuling);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var SocketQueue = {}; /**
-                              Author: SpringHack - springhack@live.cn
-                              Last modified: 2017-03-13 11:50:00
-                              Filename: src/server/socket.io.js
-                              Description: Created by SpringHack using vim automatically.
-                      **/
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; } /**
+                                                                                                                                                                                                                          Author: SpringHack - springhack@live.cn
+                                                                                                                                                                                                                          Last modified: 2017-03-13 16:20:34
+                                                                                                                                                                                                                          Filename: socket.io.js
+                                                                                                                                                                                                                          Description: Created by SpringHack using vim automatically.
+                                                                                                                                                                                                                  **/
 
+
+var SocketQueue = _defineProperty({}, _tuling2.default.getInfo()['mail'], _tuling2.default.getSocket(_express_router.connection));
+
+var IDUPER = -1;
 
 var SendTimer = function SendTimer() {
-    _express_router.connection.execute("select `id`,`from`,`to`,`text` from `chats` where `read`=0 order by `time` desc", [], function (err, result, field) {
+    _express_router.connection.execute("select `id`,`from`,`to`,`text` from `chats` where `read`=0 and `id`>? order by `time` desc", [IDUPER], function (err, result, field) {
+        var _loop = function _loop(chat) {
+            if (chat.id > IDUPER) IDUPER = chat.id;
+            if (SocketQueue[chat.to]) {
+                try {
+                    SocketQueue[chat.to].emit('chat', {
+                        from: chat.from,
+                        to: chat.to,
+                        text: chat.text
+                    }, function () {
+                        _express_router.connection.execute("update `chats` set `read`=1 where `id`=?", [chat.id], function (err, result, field) {});
+                    });
+                } catch (e) {
+                    //TODO
+                }
+            }
+        };
+
         var _iteratorNormalCompletion = true;
         var _didIteratorError = false;
         var _iteratorError = undefined;
@@ -34,21 +59,7 @@ var SendTimer = function SendTimer() {
             for (var _iterator = result[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                 var chat = _step.value;
 
-                if (SocketQueue[chat.to]) {
-                    try {
-                        SocketQueue[chat.to].emit('data', {
-                            type: 'chat',
-                            chat: {
-                                from: chat.from,
-                                to: chat.to,
-                                text: chat.text
-                            }
-                        });
-                        _express_router.connection.execute("update `chats` set `read`=1 where `id`=?", [chat.id], function (err, result, field) {});
-                    } catch (e) {
-                        //TODO
-                    }
-                }
+                _loop(chat);
             }
         } catch (err) {
             _didIteratorError = true;
@@ -99,7 +110,7 @@ exports.default = function (app) {
                     break;
                 case 'list':
                     _express_router.connection.execute("select `mail`,`user` from `users`", [], function (err, result, field) {
-                        socket.emit('data', { type: 'list', list: result });
+                        socket.emit('data', { type: 'list', list: [].concat([_tuling2.default.getInfo()], result) });
                     });
                     break;
                 case 'send':

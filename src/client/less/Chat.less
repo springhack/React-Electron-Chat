@@ -12,6 +12,7 @@
             background: @WhiteB;
             height: 100%;
             display: flex;
+            min-width: calc(600 / 16rem);
             flex-direction: column;
             .Title {
                 width: 100%;
@@ -38,10 +39,13 @@
                     padding: calc(10 / 16rem);
                     margin: 1rem;
                     border-radius: calc(10 / 16rem);
+                    max-width: calc(500 / 16rem);
+                    overflow: auto;
                     pre {
                         padding: 0;
                         margin: 0;
                         border: 0;
+                        white-space: pre-wrap;
                     }
                     &.from {
                         align-self: flex-end;
