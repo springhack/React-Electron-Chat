@@ -1,0 +1,83 @@
+@import './User.less';
+
+#app {
+    .Chat {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .Main {
+            flex-grow: 1;
+            background: @WhiteB;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            .Title {
+                width: 100%;
+                height: 1.25rem;
+                font-size: 1rem;
+                text-align: center;
+                vertical-align: middle;
+                padding: 0.5rem;
+                border-bottom: calc(1 / 16rem) @WhiteC solid;
+                overflow: hidden;
+            }
+            .Send {
+                width: 100%;
+                height: e("calc(100% - 8.5rem)");
+                display: flex;
+                flex-direction: column;
+                overflow-x: hidden;
+                overflow-y: auto;
+                border-bottom: calc(1 / 16rem) @WhiteC solid;
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+                & > div {
+                    padding: calc(10 / 16rem);
+                    margin: 1rem;
+                    border-radius: calc(10 / 16rem);
+                    pre {
+                        padding: 0;
+                        margin: 0;
+                        border: 0;
+                    }
+                    &.from {
+                        align-self: flex-end;
+                        background: @GreenE;
+                    }
+                    &.to {
+                        align-self: flex-start;
+                        background: @WhiteA;
+                    }
+                }
+            }
+            .Edit {
+                width: 100%;
+                height: 6.25rem;
+                display: flex;
+                textarea {
+                    background: @WhiteB;
+                    box-sizing: border-box;
+                    width: e("calc(100% - 6.25rem)");
+                    height: 6.25rem;
+                    outline: none;
+                    border: none;
+                    padding: calc(8 / 16rem);
+                }
+                button {
+                    width: 6.25rem;
+                    height: 6.25rem;
+                    border: none;
+                    background: @WhiteB;
+                    outline: none;
+                    cursor: pointer;
+                    &:hover {
+                        background: @WhiteD;
+                    }
+                }
+            }
+        }
+    }
+}

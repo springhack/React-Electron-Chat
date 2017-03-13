@@ -3,5 +3,8 @@
   "version": "1.0.0",
   "description": "Just a chat",
   "main": "lib/main.js",
-  "author": "SpringHack"
+  "author": "SpringHack",
+  "dependencies": {
+    "socket.io": "^1.7.3"
+  }
 }

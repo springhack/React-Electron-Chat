@@ -1,0 +1,59 @@
+#app {
+    .Chat {
+        aside {
+            width: calc(200 / 16rem);
+            height: 100%;
+            background: @WhiteA;
+            overflow-x: hidden;
+            overflow-y: auto;
+            border-right: calc(1 / 16rem) @WhiteC solid;
+            display: flex;
+            flex-direction: column;
+            .User {
+                cursor: pointer;
+                background: @WhiteA;
+                height: 4rem;
+                border-bottom: calc(1 / 16rem) @WhiteC solid;
+                &:hover {
+                    background: @WhiteC;
+                }
+                &.current {
+                    background: @WhiteC;
+                    .Count {
+                        display: none;
+                    }
+                }
+                .Info {
+                    .Name {
+                        font-size: calc(20 / 16rem);
+                        margin: calc(8 / 16rem);
+                        margin-left: 1rem;
+                    }
+                    .Mail {
+                        font-size: calc(12 / 16rem);
+                        margin: calc(8 / 16rem);
+                        margin-left: 0.8rem;
+                    }
+                }
+                .Count {
+                    position: relative;
+                    top: -2.5rem;
+                    font-size: 0.825rem;
+                    left: 10rem;
+                    z-index: 11;
+                    background: @RedA;
+                    display: inline-block;
+                    padding: 0.25rem;
+                    color: @WhiteA;
+                    height: 1rem;
+                    min-width: 1rem;
+                    text-align: center;
+                    border-radius: 100%;
+                    &.zero {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}

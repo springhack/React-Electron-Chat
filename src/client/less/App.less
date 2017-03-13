@@ -1,9 +1,15 @@
 @import './Var.less';
+@import './Chat.less';
 
-html, *{
-    font-size: 16px;
+* {
+    font-size: 12px;
+    font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
     transition: all .5s;
-    font-family: "苹方", "Microsoft YaHei", "Comic Sans MS", "幼圆", "黑体", sans-serif;
+}
+
+html {
+    font-size: 16px;
+    overflow: hidden;
 }
 
 body, img, div, section {
@@ -13,7 +19,6 @@ body, img, div, section {
 }
 
 #app {
-    margin-top: calc(32 / 16rem);
     position: absolute;
     top: 0;
     bottom: 0;
@@ -38,7 +43,7 @@ body, img, div, section {
                 border-bottom: 1px @DarkA solid;
                 text-align: center;
                 &:focus, &:hover {
-                    border-bottom: 1px @PinkA solid;
+                    border-bottom: 1px @GreenB solid;
                 }
             }
             button {
@@ -47,12 +52,11 @@ body, img, div, section {
                 border: none;
                 cursor: pointer;
                 border-radius: calc(2 / 16rem);
-                background: @WhiteB;
-                color: @GreenD;
+                background: @GreenE;
+                color: @PinkD;
                 box-shadow: 0 0 calc(4 / 16rem) @DarkA;
                 &:hover {
-                    color: @GreenB;
-                    box-shadow: calc(1 / 16rem) calc(1 / 16rem) calc(4 / 16rem) @DarkA;
+                    opacity: 0.8;
                 }
             }
             .Link {

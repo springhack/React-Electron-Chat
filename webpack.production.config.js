@@ -1,6 +1,6 @@
 /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2017-03-02 18:14:41
+        Last modified: 2017-03-13 13:39:45
         Filename: webpack.production.config.js
         Description: Created by SpringHack using vim automatically.
 **/
