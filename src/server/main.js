@@ -1,6 +1,6 @@
 /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2017-03-13 17:14:20
+        Last modified: 2017-03-13 18:19:33
         Filename: src/server/main.js
         Description: Created by SpringHack using vim automatically.
 **/
@@ -19,7 +19,8 @@ let createWindow = () => {
         webPreferences : {
             //devTools : false,
             webSecurity: false,
-            allowRunningInsecureContent : true
+            allowRunningInsecureContent : true,
+            textAreasAreResizable : false
         }
     });
     DEV?MainWindow.loadURL(`http://localhost:9090`):MainWindow.loadURL(`file://${__dirname}/../dist/index.html`);
