@@ -23,4 +23,4 @@
 
 ### Screenshots:
 
-![Chat](http://github.com/springhack/React-Electron-Chat/raw/master/screenshots/chat.png)
+![Chat](https://raw.githubusercontent.com/springhack/React-Electron-Chat/master/screenshots/Chat.png)
